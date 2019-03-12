@@ -1,4 +1,6 @@
-import CoroutinesAsync.nestedHierarchy
+package sandbox
+
+import sandbox.CoroutinesAsync.nestedHierarchy
 import kotlinx.coroutines.*
 
 /**
