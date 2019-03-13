@@ -17,7 +17,7 @@ fun CoroutineScope.playMusic(dispatcher: CoroutineDispatcher): Job {
         )
 
         var i = 0
-        while(coroutineContext.isActive) {
+        while(isActive) {
             val song = songs[i++ % songs.size]
             println("🎧 ${Thread.currentThread().name} Now playing: $song")
             delay(5000)

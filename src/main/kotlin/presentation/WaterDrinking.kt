@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 
 fun CoroutineScope.drinkWater(dispatcher: CoroutineDispatcher): Job {
     return launch(dispatcher) {
-        while(coroutineContext.isActive) {
+        while(isActive) {
             println("💧 Time to drink water! (${Thread.currentThread().name})")
             delay(5000)
         }

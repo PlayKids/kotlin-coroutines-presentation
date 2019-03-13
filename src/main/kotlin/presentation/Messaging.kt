@@ -12,7 +12,7 @@ fun CoroutineScope.interactWithFriends(dispatcher: CoroutineDispatcher): Job {
         val friends = listOf("Alexandre", "Caique", "Júlio", "Carlos", "Fellipe")
         val replies = listOf("Awesome!", "ata", "OK", "What do you think about 5PM?", "Sure!", "I like that", "Cool!")
 
-        while(coroutineContext.isActive) {
+        while(isActive) {
             val friend = friends[Random.nextInt(friends.size)]
             val reply = replies[Random.nextInt(replies.size)]
 
