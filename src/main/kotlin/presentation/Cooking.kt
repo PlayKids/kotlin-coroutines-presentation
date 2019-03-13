@@ -30,12 +30,12 @@ fun CoroutineScope.cook(dispatcher: CoroutineDispatcher): Job {
 
         val startTime = System.currentTimeMillis()
 
-        val rice = prepareIngredient("rice", 8)
-        val beans = prepareIngredient("beans", 15)
-        val beef = prepareIngredient("beef", 10)
-        val eggs = prepareIngredient("eggs", 4)
+        val rice = async { prepareIngredient("rice", 8) }
+        val beans = async { prepareIngredient("beans", 15) }
+        val beef = async { prepareIngredient("beef", 10) }
+        val eggs = async { prepareIngredient("eggs", 4) }
 
-        val plate = assemble(plateName, rice, beans, beef, eggs)
+        val plate = assemble(plateName, rice.await(), beans.await(), beef.await(), eggs.await())
 
         val endTime = System.currentTimeMillis()
 

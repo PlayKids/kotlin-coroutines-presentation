@@ -1,8 +1,6 @@
 package presentation
 
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -16,22 +14,22 @@ fun main() = runBlocking<Unit> {
         .newSingleThreadExecutor()      // That's me!
         .asCoroutineDispatcher()
 
-    val cookingJob = cook(person)
+    val cooking = cook(person)
 
-    val messagingJob = interactWithFriends(person)
+    val messaging = interactWithFriends(person)
 
-    val waterDrinkingJob = drinkWater(person)
+    val waterDrinking = drinkWater(person)
 
     val jukebox = Executors
         .newSingleThreadExecutor()
         .asCoroutineDispatcher()
 
-    val spotifyJob = playMusic(jukebox)
+    val musicService = playMusic(jukebox)
 
-    cookingJob.join()
-    messagingJob.cancelAndJoin()
-    waterDrinkingJob.cancelAndJoin()
-    spotifyJob.cancelAndJoin()
+    cooking.join()
+    messaging.cancelAndJoin()
+    waterDrinking.cancelAndJoin()
+    musicService.cancelAndJoin()
 
     (person.executor as ExecutorService).shutdown()
     (jukebox.executor as ExecutorService).shutdown()
